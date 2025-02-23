@@ -1,0 +1,19 @@
+<!-- One Way Binding [Data binding] -->
+<div class="card">
+  @if(isAppear){
+  <img [src]="storeData.img" class="card-img-top" alt="..." />
+  <!-- <img src="{{ storeData.img }}" class="card-img-top" alt="..." /> -->
+  }
+  <div class="card-body">
+    <h5 class="card-title">The data title is {{ storeData.title }}</h5>
+    @for (branch of storeData.branches ; track branch){
+    <p class="card-text">
+      {{ branch }}
+    </p>
+    }
+
+    <button class="btn btn-dark w-100" (click)="ToggleisAppear()">
+      {{ btnText }}
+    </button>
+  </div>
+</div>
