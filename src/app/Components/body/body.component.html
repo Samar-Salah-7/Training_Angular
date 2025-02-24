@@ -1,7 +1,7 @@
 <!-- One Way Binding [Data binding] -->
 <div class="card">
   @if(isAppear){
-  <img [src]="storeData.img" class="card-img-top" alt="..." />
+  <img [src]="storeData.img" class="card-img-top img-fluid" alt="..." />
   <!-- <img src="{{ storeData.img }}" class="card-img-top" alt="..." /> -->
   }
   <div class="card-body">
@@ -16,4 +16,49 @@
       {{ btnText }}
     </button>
   </div>
+</div>
+<hr />
+<hr />
+
+<!-- Slid Images -->
+<div id="carouselExample" class="carousel slide bg-dark bg-gradient">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img
+        src="{{ circleImage.slideImages[index] }}"
+        class="d-block img-fluid"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        [src]="circleImage.slideImages[index]"
+        class="d-block img-fluid"
+        alt="..."
+      />
+    </div>
+    <div class="carousel-item">
+      <img
+        src="{{ circleImage.slideImages[index] }}"
+        class="d-block img-fluid"
+        alt="..."
+      />
+    </div>
+  </div>
+</div>
+<br /><br /><br /><br />
+<div class="buttons text-center">
+  <button type="button" class="btn btn-outline-primary m-5" (click)="btnPrev()">
+    {{ btnPrevText }}
+  </button>
+  <!-- <button
+    type="button"
+    class="btn btn-outline-success m-5"
+    (click)="TogglePlay()"
+  >
+    {{ btnPlayText }}
+  </button> -->
+  <button type="button" class="btn btn-outline-primary m-5" (click)="btnNext()">
+    {{ btnNextText }}
+  </button>
 </div>
