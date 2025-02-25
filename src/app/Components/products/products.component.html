@@ -1,0 +1,56 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quatity</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(product of productList;track product.id){
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>
+        <img src="{{ product.imgUrl }}" height="80" alt="" appLightBox />
+      </td>
+      <td>{{ product.price }}</td>
+
+      <!-- <td>{{ product.quantity }}</td> -->
+      <!-- Attribute Directive [ngStyle], [ngClass  ] -->
+      <!-- <td [ngStyle]="{ background: product.quantity === 0 ? 'red' : 'white' }">
+        {{ product.quantity }}
+      </td> -->
+      <!-- <td
+        [ngClass]="{
+          'bg-danger': product.quantity === 0,
+          'bg-warning': product.quantity === 1
+        }"
+      >
+        {{ product.quantity }}
+      </td> -->
+      <!-- @if(product.quantity=== 1){
+      <td class="bg-warning text-light text-center align-middle">Last One</td>
+      } @else if(product.quantity === 0){
+      <td class="bg-danger text-light text-center align-middle">
+        Out Of Stock
+      </td>
+      } @else{
+      <td class="text-center align-middle">{{ product.quantity }}</td>
+      } -->
+      @switch(product.quantity){ @case(0){
+      <td class="bg-danger text-light text-center align-middle">
+        Out Of Stock
+      </td>
+      } @case(1){
+      <td class="bg-warning text-light text-center align-middle">Last One</td>
+      }@default{
+      <td class="text-center align-middle">{{ product.quantity }}</td>
+
+      } }
+    </tr>
+    }
+  </tbody>
+</table>
