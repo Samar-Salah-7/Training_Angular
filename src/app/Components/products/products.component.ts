@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
 import { IProduct } from '../../Models/iproduct';
-import { NgClass, NgStyle } from '@angular/common';
+import { CurrencyPipe, NgClass, NgStyle, UpperCasePipe } from '@angular/common';
 import { LightBoxDirective } from '../../Directives/light-box.directive';
+import { CalcPipe } from '../../Pipes/calc.pipe';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [NgClass, NgStyle, LightBoxDirective],
+  imports: [
+    NgClass,
+    NgStyle,
+    LightBoxDirective,
+    CurrencyPipe,
+    CalcPipe,
+    UpperCasePipe,
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })

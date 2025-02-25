@@ -12,14 +12,24 @@
     @for(product of productList;track product.id){
     <tr>
       <td>{{ product.id }}</td>
-      <td>{{ product.name }}</td>
+      <td>{{ product.name | uppercase }}</td>
       <td>
-        <img src="{{ product.imgUrl }}" height="80" alt="" appLightBox />
+        <img
+          class="img-fluid"
+          src="{{ product.imgUrl }}"
+          height="100"
+          width="120"
+          alt=""
+          appLightBox
+        />
       </td>
-      <td>{{ product.price }}</td>
+      <!-- <td>{{ product.price | currency : "$" }}</td> -->
+
+      <!--اضرب لى فى 100 والديفولت بتعاى هناك فى البايب أنا حطاه 50 و يعنى لو محطتش قيمة هيعتمد ال 50 الديفولت -->
+      <td>{{ product.price | calc : 100 }}</td>
 
       <!-- <td>{{ product.quantity }}</td> -->
-      <!-- Attribute Directive [ngStyle], [ngClass  ] -->
+      <!--? Attribute Directive [ngStyle], [ngClass  ] -->
       <!-- <td [ngStyle]="{ background: product.quantity === 0 ? 'red' : 'white' }">
         {{ product.quantity }}
       </td> -->
