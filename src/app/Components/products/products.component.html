@@ -1,24 +1,26 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Image</th>
-      <th scope="col">Price</th>
-      <th scope="col">Quatity</th>
+      <th scope="col" class="text-center align-middle">ID</th>
+      <th scope="col" class="text-center align-middle">Name</th>
+      <th scope="col" class="align-middle">Image</th>
+      <th scope="col" class="text-center align-middle">Price</th>
+      <th scope="col" class="text-center align-middle">Quatity</th>
+      <th scope="col" class="text-center align-middle">Count</th>
+      <th scope="col" class="text-center align-middle">Buy</th>
     </tr>
   </thead>
   <tbody>
     @for(product of productList;track product.id){
     <tr>
-      <td>{{ product.id }}</td>
-      <td>{{ product.name | uppercase }}</td>
+      <td class="text-center align-middle">{{ product.id }}</td>
+      <td class="text-center align-middle">{{ product.name | uppercase }}</td>
       <td>
         <img
           class="img-fluid"
+          height="200"
+          width="200"
           src="{{ product.imgUrl }}"
-          height="100"
-          width="120"
           alt=""
           appLightBox
         />
@@ -26,7 +28,7 @@
       <!-- <td>{{ product.price | currency : "$" }}</td> -->
 
       <!--اضرب لى فى 100 والديفولت بتعاى هناك فى البايب أنا حطاه 50 و يعنى لو محطتش قيمة هيعتمد ال 50 الديفولت -->
-      <td>{{ product.price | calc : 100 }}</td>
+      <td class="text-center align-middle">{{ product.price | calc : 100 }}</td>
 
       <!-- <td>{{ product.quantity }}</td> -->
       <!--? Attribute Directive [ngStyle], [ngClass  ] -->
@@ -57,10 +59,36 @@
       } @case(1){
       <td class="bg-warning text-light text-center align-middle">Last One</td>
       }@default{
-      <td class="text-center align-middle">{{ product.quantity }}</td>
+      <td class="text-center align-middle">
+        {{ product.quantity }}
+      </td>
 
       } }
+
+      <td class="align-middle">
+        <!-- #iteminput =>> دى ريفرنس للرقم اللى هيتحط فى الانبوت  -->
+        <input
+          type="number"
+          name=""
+          #iteminput
+          [min]="1"
+          [max]="product.quantity"
+          [disabled]="product.quantity === 0"
+        />
+      </td>
+      <td class="align-middle">
+        <button
+          class="btn btn-dark"
+          (click)="Shopping(product.price, iteminput.value, product.quantity)"
+          [disabled]="product.quantity === 0"
+        >
+          Buy
+        </button>
+      </td>
     </tr>
+
     }
   </tbody>
 </table>
+<hr />
+<h1>The total price: {{ totalPrice | calc : 100 }}</h1>
