@@ -3,6 +3,8 @@ import { IProduct } from '../../Models/iproduct';
 import { CurrencyPipe, NgClass, NgStyle, UpperCasePipe } from '@angular/common';
 import { LightBoxDirective } from '../../Directives/light-box.directive';
 import { CalcPipe } from '../../Pipes/calc.pipe';
+import { ICategory } from '../../Models/icategory';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -14,15 +16,37 @@ import { CalcPipe } from '../../Pipes/calc.pipe';
     CurrencyPipe,
     CalcPipe,
     UpperCasePipe,
+    FormsModule,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
 export class ProductsComponent {
   productList: IProduct[];
+  categoryList: ICategory[];
   totalPrice: number;
+  selectedCategoryId: number;
   constructor() {
     this.totalPrice = 0;
+    this.selectedCategoryId = 0;
+    this.categoryList = [
+      {
+        id: 1,
+        categoryName: 'SummerFlowers',
+      },
+      {
+        id: 2,
+        categoryName: 'AutumnFlowers',
+      },
+      {
+        id: 3,
+        categoryName: 'WinterFlowers',
+      },
+      {
+        id: 4,
+        categoryName: 'SpringFlowers',
+      },
+    ];
     this.productList = [
       {
         id: 1,
@@ -49,7 +73,7 @@ export class ProductsComponent {
         imgUrl:
           'https://th.bing.com/th?id=ODL.e4b17edf957acb1a78f281a96684af41&w=298&h=224&c=10&rs=1&qlt=99&o=6&dpr=1.3&pid=AlgoBlockDebug',
         quantity: 10,
-        categoryId: 2,
+        categoryId: 3,
       },
       {
         id: 4,
@@ -58,7 +82,7 @@ export class ProductsComponent {
         imgUrl:
           'https://www.bing.com/th?id=OIP.oR8sHmddTwRjaYLWFbqF2gHaHa&w=130&h=150&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2',
         quantity: 3,
-        categoryId: 1,
+        categoryId: 4,
       },
       {
         id: 5,
@@ -85,7 +109,7 @@ export class ProductsComponent {
         imgUrl:
           'https://th.bing.com/th?id=ODL.e4b17edf957acb1a78f281a96684af41&w=298&h=224&c=10&rs=1&qlt=99&o=6&dpr=1.3&pid=AlgoBlockDebug',
         quantity: 10,
-        categoryId: 2,
+        categoryId: 3,
       },
       {
         id: 8,
@@ -94,7 +118,7 @@ export class ProductsComponent {
         imgUrl:
           'https://www.bing.com/th?id=OIP.oR8sHmddTwRjaYLWFbqF2gHaHa&w=130&h=150&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2',
         quantity: 3,
-        categoryId: 1,
+        categoryId: 4,
       },
       {
         id: 9,
