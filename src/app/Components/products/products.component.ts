@@ -23,11 +23,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProductsComponent {
   productList: IProduct[];
+
   categoryList: ICategory[];
   totalPrice: number;
   selectedCategoryId: number;
   constructor() {
     this.totalPrice = 0;
+
     this.selectedCategoryId = 0;
     this.categoryList = [
       {
@@ -140,17 +142,17 @@ export class ProductsComponent {
       },
     ];
   }
-  // calcQuantity(count: any) {
-  //   if (this.productList[this.index].quantity !== 0) {
-  //     this.productList[this.index].quantity -= Number(count);
-  //   } else {
-  //     this.productList[this.index].quantity = 0;
-  //   }
-  //   return this.productList[this.index].quantity;
+  // calcQuantity(count: any, updatedQuantity: number) {
+  //   return updatedQuantity - count;
   // }
-  Shopping(price: number, count: any, updatedQuantity: number) {
+  Shopping(price: number, count: any, newQuantity: number) {
     this.totalPrice += price * Number(count);
 
-    updatedQuantity -= count;
+    if (newQuantity === 0) {
+      return 0;
+    } else {
+      newQuantity -= count;
+      return newQuantity;
+    }
   }
 }

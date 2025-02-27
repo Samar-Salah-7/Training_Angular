@@ -60,7 +60,8 @@
       } @else{
       <td class="text-center align-middle">{{ product.quantity }}</td>
       } -->
-      @switch(product.quantity){ @case(0){
+      @switch(Shopping (product.price, iteminput.value, product.quantity)){
+      @case(0){
       <td class="bg-danger text-light text-center align-middle">
         Out Of Stock
       </td>
@@ -68,7 +69,7 @@
       <td class="bg-warning text-light text-center align-middle">Last One</td>
       }@default{
       <td class="text-center align-middle">
-        {{ product.quantity }}
+        {{ Shopping(product.price, iteminput.value, product.quantity) }}
       </td>
 
       } }
@@ -80,15 +81,19 @@
           name=""
           #iteminput
           [min]="1"
-          [max]="product.quantity"
-          [disabled]="product.quantity === 0"
+          [max]="Shopping(product.price, iteminput.value, product.quantity)"
+          [disabled]="
+            !Shopping(product.price, iteminput.value, product.quantity)
+          "
         />
       </td>
       <td class="align-middle">
         <button
           class="btn btn-dark"
           (click)="Shopping(product.price, iteminput.value, product.quantity)"
-          [disabled]="product.quantity === 0"
+          [disabled]="
+            !Shopping(product.price, iteminput.value, product.quantity)
+          "
         >
           Buy
         </button>
