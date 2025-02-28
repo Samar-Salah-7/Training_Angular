@@ -23,8 +23,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ProductsComponent {
   productList: IProduct[];
-
   categoryList: ICategory[];
+  filtratedList: IProduct[];
   totalPrice: number;
   selectedCategoryId: number;
   constructor() {
@@ -141,6 +141,7 @@ export class ProductsComponent {
         categoryId: 2,
       },
     ];
+    this.filtratedList = this.productList;
   }
   // calcQuantity(count: any, updatedQuantity: number) {
   //   return updatedQuantity - count;
@@ -154,5 +155,10 @@ export class ProductsComponent {
       newQuantity -= count;
       return newQuantity;
     }
+  }
+  FitrateById() {
+    this.filtratedList = this.productList.filter(
+      (i) => Number(i.categoryId) === Number(this.selectedCategoryId)
+    );
   }
 }

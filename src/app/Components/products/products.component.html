@@ -1,10 +1,14 @@
-<select [(ngModel)]="selectedCategoryId" class="form-select">
+<select
+  [(ngModel)]="selectedCategoryId"
+  class="form-select"
+  (change)="FitrateById()"
+>
   @for(category of categoryList ;track category) {
   <option value="{{ category.id }}">{{ category.categoryName }}</option>
   }
 </select>
 
-<h1>{{ selectedCategoryId }}</h1>
+<!-- <h1>{{ selectedCategoryId }}</h1> -->
 
 <table class="table">
   <thead>
@@ -19,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    @for(product of productList;track product.id){
+    @for(product of filtratedList;track product.id){
     <tr>
       <td class="text-center align-middle">{{ product.id }}</td>
       <td class="text-center align-middle">{{ product.name | uppercase }}</td>
