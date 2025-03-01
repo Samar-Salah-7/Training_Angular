@@ -4,6 +4,7 @@ import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { BodyComponent } from './Components/body/body.component';
 import { ProductsComponent } from './Components/products/products.component';
+import { MasterProductsComponent } from './Components/master-products/master-products.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { ProductsComponent } from './Components/products/products.component';
     HeaderComponent,
     FooterComponent,
     BodyComponent,
-    ProductsComponent,
+    MasterProductsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -1,0 +1,13 @@
+<select [(ngModel)]="selectedCategoryId" class="form-select">
+  @for(category of categoryList ;track category) {
+  <option value="{{ category.id }}">{{ category.categoryName }}</option>
+  }
+</select>
+<!-- <h1>{{ selectedCategoryId }}</h1> -->
+<hr />
+<!-- Emit Event -->
+<app-products
+  [SentId]="selectedCategoryId"
+  (productsTotalPrice)="RecievedTotalPrice($event)"
+></app-products>
+<h2>The Total Price is : {{ recievedTotalPrice | calc : 100 }}</h2>

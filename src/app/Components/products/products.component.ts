@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, output } from '@angular/core';
 import { IProduct } from '../../Models/iproduct';
 import { CurrencyPipe, NgClass, NgStyle, UpperCasePipe } from '@angular/common';
 import { LightBoxDirective } from '../../Directives/light-box.directive';
 import { CalcPipe } from '../../Pipes/calc.pipe';
-import { ICategory } from '../../Models/icategory';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
@@ -16,39 +14,22 @@ import { FormsModule } from '@angular/forms';
     CurrencyPipe,
     CalcPipe,
     UpperCasePipe,
-    FormsModule,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnChanges, OnInit {
   productList: IProduct[];
-  categoryList: ICategory[];
   filtratedList: IProduct[];
   totalPrice: number;
   selectedCategoryId: number;
+  @Input() SentId: number = 0;
+  productsTotalPrice = output<number>();
   constructor() {
     this.totalPrice = 0;
 
     this.selectedCategoryId = 0;
-    this.categoryList = [
-      {
-        id: 1,
-        categoryName: 'SummerFlowers',
-      },
-      {
-        id: 2,
-        categoryName: 'AutumnFlowers',
-      },
-      {
-        id: 3,
-        categoryName: 'WinterFlowers',
-      },
-      {
-        id: 4,
-        categoryName: 'SpringFlowers',
-      },
-    ];
+
     this.productList = [
       {
         id: 1,
@@ -148,7 +129,7 @@ export class ProductsComponent {
   // }
   Shopping(price: number, count: any, newQuantity: number) {
     this.totalPrice += price * Number(count);
-
+    this.productsTotalPrice.emit(this.totalPrice);
     if (newQuantity === 0) {
       return 0;
     } else {
@@ -157,8 +138,21 @@ export class ProductsComponent {
     }
   }
   FitrateById() {
+    if (this.SentId === 0) {
+      this.filtratedList = this.productList;
+    }
+    // this.filtratedList = this.productList.filter(
+    //   (i) => Number(i.categoryId) === Number(this.selectedCategoryId)
+    // );
     this.filtratedList = this.productList.filter(
-      (i) => Number(i.categoryId) === Number(this.selectedCategoryId)
+      (i) => Number(i.categoryId) === Number(this.SentId)
     );
+  }
+  // LifeCycle Method
+  ngOnChanges(): void {
+    this.FitrateById();
+  }
+  ngOnInit(): void {
+    this.filtratedList = this.productList;
   }
 }
