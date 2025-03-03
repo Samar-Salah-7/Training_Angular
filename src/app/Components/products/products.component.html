@@ -109,12 +109,17 @@
           >See More</a
         >
       </td> -->
-      <td>
+      <td class="align-middle">
         <button
           class="btn btn-warning"
           (click)="OpenProductDetails(product.id)"
         >
-          SeeMaore
+          SeeMore
+        </button>
+      </td>
+      <td class="align-middle">
+        <button class="btn btn-danger" (click)="DeleteProductById(product.id)">
+          Delete
         </button>
       </td>
     </tr>
