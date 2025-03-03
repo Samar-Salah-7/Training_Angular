@@ -20,6 +20,7 @@
       <th scope="col" class="text-center align-middle">Quatity</th>
       <th scope="col" class="text-center align-middle">Count</th>
       <th scope="col" class="text-center align-middle">Buy</th>
+      <th scope="col" class="text-center align-middle">More Info</th>
     </tr>
   </thead>
   <tbody>
@@ -100,6 +101,20 @@
           "
         >
           Buy
+        </button>
+      </td>
+
+      <!-- <td>
+        <a class="btn btn-success" [routerLink]="['/products', product.id]"
+          >See More</a
+        >
+      </td> -->
+      <td>
+        <button
+          class="btn btn-warning"
+          (click)="OpenProductDetails(product.id)"
+        >
+          SeeMaore
         </button>
       </td>
     </tr>

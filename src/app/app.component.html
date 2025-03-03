@@ -1,8 +1,13 @@
+@if(!currentLocation){
 <app-header></app-header>
+} @else{
+<app-header hidden></app-header>
+}
 <div class="container" style="min-height: 90vh">
-  <app-body></app-body>
-  <hr />
+  <!-- <app-body></app-body>
+  <hr /> -->
   <!-- <app-products></app-products> -->
-  <app-master-products></app-master-products>
+  <!-- <app-master-products></app-master-products> -->
+  <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>

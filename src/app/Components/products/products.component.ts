@@ -3,6 +3,7 @@ import { IProduct } from '../../Models/iproduct';
 import { CurrencyPipe, NgClass, NgStyle, UpperCasePipe } from '@angular/common';
 import { LightBoxDirective } from '../../Directives/light-box.directive';
 import { CalcPipe } from '../../Pipes/calc.pipe';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -14,6 +15,7 @@ import { CalcPipe } from '../../Pipes/calc.pipe';
     CurrencyPipe,
     CalcPipe,
     UpperCasePipe,
+    RouterModule,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
@@ -25,7 +27,7 @@ export class ProductsComponent implements OnChanges, OnInit {
   selectedCategoryId: number;
   @Input() SentId: number = 0;
   productsTotalPrice = output<number>();
-  constructor() {
+  constructor(private router: Router) {
     this.totalPrice = 0;
 
     this.selectedCategoryId = 0;
@@ -154,5 +156,8 @@ export class ProductsComponent implements OnChanges, OnInit {
   }
   ngOnInit(): void {
     this.filtratedList = this.productList;
+  }
+  OpenProductDetails(id: number) {
+    this.router.navigateByUrl('/products/' + id);
   }
 }
