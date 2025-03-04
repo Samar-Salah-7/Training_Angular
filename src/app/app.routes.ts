@@ -10,23 +10,28 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+    data: { showHeader: true },
   },
   {
     path: 'home',
     component: BodyComponent,
+    data: { showHeader: true },
   },
   {
     path: 'products',
     component: MasterProductsComponent,
+    data: { showHeader: true },
   },
 
   {
     //Dynamic Component
     path: 'products/:ID',
     component: ProductsDetailsComponent,
+    data: { showHeader: true },
   },
   {
     path: '**',
     component: ErrorPageComponent,
+    data: { showHeader: false },
   },
 ];

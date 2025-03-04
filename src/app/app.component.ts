@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './Components/header/header.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { Location } from '@angular/common';
@@ -14,6 +14,7 @@ import { Location } from '@angular/common';
 export class AppComponent {
   title = 'Training_Angular';
   currentLocation: boolean;
+
   constructor(private currLoc: Location) {
     this.currentLocation = this.currLoc.isCurrentPathEqualTo('/**');
   }
