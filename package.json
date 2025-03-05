@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:Training_Angular": "node dist/training-angular/server/server.mjs"
+    "serve:ssr:Training_Angular": "node dist/training-angular/server/server.mjs",
+    "DB":"json-server --watch data.json --port 2000"
   },
   "private": true,
   "dependencies": {

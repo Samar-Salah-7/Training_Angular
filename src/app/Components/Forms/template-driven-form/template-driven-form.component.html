@@ -1,0 +1,32 @@
+<form action="" (ngSubmit)="addMyProduct()" #productForm="ngForm">
+  name:
+  <input
+    type="text"
+    name="name"
+    id=""
+    class="form-control"
+    [(ngModel)]="newProduct.name"
+    required
+    pattern="[A-Za-z]{4}"
+    #inpName="ngModel"
+  />
+  <div [hidden]="inpName.valid || inpName.untouched" class="alert alert-danger">
+    <small class="text-danger" [hidden]="!inpName.errors?.['required']"
+      >Name is Required</small
+    >
+    <small class="text-danger" [hidden]="!inpName.errors?.['pattern']">
+      Name is 4 letters only</small
+    >
+  </div>
+  price:
+  <input
+    type="text"
+    name="price"
+    id=""
+    class="form-control"
+    [(ngModel)]="newProduct.price"
+  />
+  <button class="btn btn-success" [disabled]="productForm.invalid">
+    Submit
+  </button>
+</form>

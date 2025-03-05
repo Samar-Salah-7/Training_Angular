@@ -4,6 +4,9 @@ import { MasterProductsComponent } from './Components/master-products/master-pro
 import path from 'path';
 import { ProductsDetailsComponent } from './Components/products-details/products-details.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
+import { ShoppingComponent } from './Components/shopping/shopping.component';
+import { TemplateDrivenFormComponent } from './Components/Forms/template-driven-form/template-driven-form.component';
+import { ReactiveFormComponent } from './Components/Forms/reactive-form/reactive-form.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +30,21 @@ export const routes: Routes = [
     //Dynamic Component
     path: 'products/:ID',
     component: ProductsDetailsComponent,
+    data: { showHeader: true },
+  },
+  {
+    path: 'shop',
+    component: ShoppingComponent,
+    data: { showHeader: true },
+  },
+  {
+    path: 'add',
+    component: TemplateDrivenFormComponent,
+    data: { showHeader: true },
+  },
+  {
+    path: 'reactive',
+    component: ReactiveFormComponent,
     data: { showHeader: true },
   },
   {
