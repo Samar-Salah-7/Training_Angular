@@ -16,7 +16,7 @@ import {
 export class ReactiveFormComponent {
   userRegister: FormGroup;
   constructor(private fb: FormBuilder) {
-    this.userRegister = fb.group({
+    this.userRegister = this.fb.group({
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z]{3,}')]],
     });
   }

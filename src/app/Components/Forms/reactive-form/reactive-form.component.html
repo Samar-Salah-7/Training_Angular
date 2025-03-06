@@ -1,5 +1,15 @@
 <form action="" [formGroup]="userRegister" (ngSubmit)="Submit()">
   name:
   <input type="text" name="name" id="" formControlName="name" />
-  <button>Submit</button>
+  <div
+    class="alert alert-danger"
+    [hidden]="getName()?.valid || getName()?.untouched"
+  >
+    @if(getName()?.errors?.["required"]){
+    <small>Name is Required</small>
+    } @else if(getName()?.errors?.["pattern"]){
+    <small>Name is at least 3 letters</small>
+    }
+  </div>
+  <button class="btn btn-dark" [disabled]="userRegister.invalid">Submit</button>
 </form>
